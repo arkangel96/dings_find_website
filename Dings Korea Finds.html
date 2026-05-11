@@ -1,0 +1,2041 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ding's Korea Finds · cute finds from Seoul, Norwalk CA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+    crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --cream: #FBF6EE;
+      --cream-warm: #FFFAF3;
+      --paper: #F6EEDF;
+      --pink: #F4C5C0;
+      --pink-soft: #FDE8E4;
+      --pink-deep: #D98A82;
+      --beige: #E8D5B7;
+      --sage: #B8C9A8;
+      --ink: #4A3F35;
+      --ink-soft: #8A7968;
+      --ink-faint: #C4B6A4;
+      --line: #E7DCC9;
+
+      --serif: "Gowun Batang", "Noto Serif KR", Georgia, serif;
+      --sans: "Gowun Dodum", "Apple SD Gothic Neo", system-ui, sans-serif;
+      --hand: "Nanum Pen Script", "Caveat", cursive;
+      --mono: "DM Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* ---------- top marquee ---------- */
+    .ticker {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+    }
+
+    .ticker__track {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 38s linear infinite;
+    }
+
+    .ticker__track span {
+      margin: 0 22px;
+    }
+
+    .ticker__track span::before {
+      content: "✿";
+      margin-right: 18px;
+      color: var(--pink);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* ---------- nav ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 246, 238, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo__mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--pink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--cream);
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .logo small {
+      display: block;
+      font-family: var(--hand);
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--ink-soft);
+      letter-spacing: 0;
+      margin-top: -4px;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 28px;
+      justify-self: center;
+      font-size: 14px;
+    }
+
+    .nav__links a {
+      padding: 6px 4px;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav__links a:hover {
+      border-color: var(--pink-deep);
+      color: var(--pink-deep);
+    }
+
+    .nav__cta {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .nav__cta .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--cream-warm);
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .cart-pill,
+    a.cart-pill {
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 999px;
+      padding: 8px 16px 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a.cart-pill:hover {
+      box-shadow: 0 6px 16px rgba(74, 63, 53, 0.2);
+    }
+
+    .cart-pill .dot {
+      background: var(--pink);
+      color: var(--ink);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ---------- containers ---------- */
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 56px 0 88px;
+      position: relative;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero__korean {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--pink-deep);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero__korean::before,
+    .hero__korean::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--pink-deep);
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(40px, 5.4vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .hero h1 .hand {
+      font-family: var(--hand);
+      font-weight: 400;
+      color: var(--pink-deep);
+      font-size: 1.15em;
+      line-height: 0.8;
+      display: inline-block;
+      transform: rotate(-3deg) translateY(-4px);
+      margin: 0 6px;
+    }
+
+    .hero p.lede {
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin: 0 0 30px;
+      text-wrap: pretty;
+    }
+
+    .hero__buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border: 1px solid transparent;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .btn--primary:hover {
+      box-shadow: 0 6px 16px rgba(74, 63, 53, 0.2);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .btn--ghost:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .hero__note {
+      font-family: var(--hand);
+      font-size: 22px;
+      color: var(--ink-soft);
+      margin-left: 8px;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+
+    .hero__meta {
+      margin-top: 42px;
+      display: flex;
+      gap: 36px;
+      border-top: 1px dashed var(--line);
+      padding-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero__meta div {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .hero__meta strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* hero collage */
+    .collage {
+      position: relative;
+      aspect-ratio: 1 / 1.05;
+    }
+
+    .polaroid {
+      position: absolute;
+      background: var(--cream-warm);
+      padding: 12px 12px 38px;
+      box-shadow: 0 14px 30px -12px rgba(74, 63, 53, 0.22),
+        0 2px 4px rgba(74, 63, 53, 0.06);
+      border: 1px solid #EFE3CD;
+    }
+
+    .polaroid__caption {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--hand);
+      font-size: 18px;
+      color: var(--ink-soft);
+    }
+
+    .collage .p1 {
+      top: 0;
+      left: 4%;
+      width: 56%;
+      transform: rotate(-4deg);
+    }
+
+    .collage .p2 {
+      top: 18%;
+      right: 0;
+      width: 46%;
+      transform: rotate(5deg);
+    }
+
+    .collage .p3 {
+      bottom: 0;
+      left: 18%;
+      width: 50%;
+      transform: rotate(2deg);
+      z-index: 2;
+    }
+
+    .sticker {
+      position: absolute;
+      background: var(--pink);
+      color: var(--ink);
+      border-radius: 50%;
+      width: 92px;
+      height: 92px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--hand);
+      font-size: 20px;
+      line-height: 1;
+      transform: rotate(-12deg);
+      box-shadow: 0 6px 14px rgba(217, 138, 130, 0.3);
+      z-index: 3;
+    }
+
+    .sticker em {
+      font-style: normal;
+      font-size: 13px;
+      font-family: var(--sans);
+      color: var(--ink);
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .sticker--hero {
+      top: -12px;
+      right: 8%;
+    }
+
+    /* placeholder image (striped) */
+    .ph {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background:
+        repeating-linear-gradient(135deg, transparent 0 14px, rgba(74, 63, 53, 0.04) 14px 15px),
+        var(--bg, var(--paper));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ph__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      background: rgba(255, 250, 243, 0.7);
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+    }
+
+    .ph--photo {
+      padding: 0;
+      overflow: hidden;
+      background: var(--cream-warm);
+    }
+
+    .photo-frame {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--cream-warm);
+    }
+
+    .card__photo > .photo-frame,
+    .about__photo > .photo-frame,
+    .insta__cell > .photo-frame,
+    .ph--photo > .photo-frame {
+      z-index: 0;
+    }
+
+    .product-shot {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      image-orientation: from-image;
+    }
+
+    .product-shot.rot-90 {
+      transform: rotate(90deg) scale(1.22);
+      transform-origin: center center;
+    }
+
+    .product-shot.rot-m90 {
+      transform: rotate(-90deg) scale(1.22);
+      transform-origin: center center;
+    }
+
+    .product-shot.rot-180 {
+      transform: rotate(180deg);
+      transform-origin: center center;
+    }
+
+    .product-shot.rot-0 {
+      transform: none;
+    }
+
+    /* ---------- section header ---------- */
+    .sec-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 38px;
+      flex-wrap: wrap;
+    }
+
+    .sec-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .sec-head h2 .hand {
+      font-family: var(--hand);
+      color: var(--pink-deep);
+      font-size: 1.15em;
+      margin-left: 6px;
+      font-weight: 400;
+      display: inline-block;
+      transform: rotate(-2deg);
+    }
+
+    .sec-head .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: 10px;
+    }
+
+    .sec-head__right {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    .sec-head__right a {
+      border-bottom: 1px solid var(--ink-faint);
+      padding-bottom: 2px;
+    }
+
+    /* ---------- New arrivals grid ---------- */
+    .arrivals {
+      background: var(--cream);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 24px;
+    }
+
+    .card {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card__photo {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: var(--cream-warm);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .card__badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      z-index: 2;
+    }
+
+    .card__badge--low {
+      background: var(--pink-deep);
+      color: var(--cream);
+      border-color: var(--pink-deep);
+    }
+
+    .card__badge--new {
+      background: var(--ink);
+      color: var(--cream);
+      border-color: var(--ink);
+    }
+
+    .card__heart {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--ink-soft);
+      z-index: 2;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .card:hover .card__heart {
+      background: var(--pink);
+      color: var(--ink);
+      border-color: var(--pink);
+    }
+
+    .card__quick {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 2;
+    }
+
+    .card:hover .card__quick {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card__meta {
+      padding: 14px 4px 0;
+    }
+
+    .card__korean {
+      font-family: var(--serif);
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+      margin: 0 0 4px;
+    }
+
+    .card__title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      letter-spacing: -0.005em;
+    }
+
+    .card__sub {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0 0 8px;
+    }
+
+    .card__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .card__price {
+      font-family: var(--serif);
+      font-weight: 700;
+    }
+
+    .card__stock {
+      font-family: var(--hand);
+      font-size: 17px;
+      color: var(--pink-deep);
+    }
+
+    /* tape label */
+    .tape {
+      position: absolute;
+      top: -10px;
+      right: 22px;
+      background: rgba(244, 197, 192, 0.85);
+      color: var(--ink);
+      font-family: var(--hand);
+      font-size: 16px;
+      padding: 4px 18px;
+      transform: rotate(6deg);
+      z-index: 3;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .tape::before,
+    .tape::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: repeating-linear-gradient(45deg, transparent 0 3px, rgba(255, 255, 255, 0.4) 3px 4px);
+    }
+
+    .tape::before {
+      left: 0;
+    }
+
+    .tape::after {
+      right: 0;
+    }
+
+    /* ---------- about ding strip ---------- */
+    .about {
+      background: var(--pink-soft);
+      border-radius: 32px;
+      margin: 0 32px;
+      padding: 64px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: "안녕";
+      position: absolute;
+      top: 24px;
+      right: 36px;
+      font-family: var(--hand);
+      font-size: 56px;
+      color: var(--pink);
+      transform: rotate(8deg);
+      letter-spacing: -0.02em;
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about__photo {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: var(--cream-warm);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      transform: rotate(-2deg);
+      box-shadow: 0 14px 30px -14px rgba(217, 138, 130, 0.5);
+      overflow: hidden;
+    }
+
+    .about__kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: 14px;
+    }
+
+    .about h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      margin: 0 0 18px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .about p {
+      font-size: 16px;
+      color: var(--ink);
+      margin: 0 0 14px;
+      max-width: 560px;
+      text-wrap: pretty;
+    }
+
+    .about__sig {
+      margin-top: 22px;
+      font-family: var(--hand);
+      font-size: 36px;
+      color: var(--pink-deep);
+      line-height: 1;
+    }
+
+    .about__sig small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    /* ---------- IG-style row ---------- */
+    .insta {
+      padding: 64px 0;
+      background: var(--paper);
+    }
+
+    .insta__head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .insta__head h2 {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .insta__head p {
+      font-family: var(--hand);
+      font-size: 22px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    a.insta__handle {
+      color: var(--pink-deep);
+      text-decoration: none;
+    }
+
+    a.insta__handle:hover {
+      text-decoration: underline;
+    }
+
+    .insta__row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .insta__row .insta__cell {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.25s, filter 0.25s;
+      cursor: pointer;
+    }
+
+    .insta__row .insta__cell:hover {
+      transform: scale(1.03);
+      filter: brightness(1.04);
+    }
+
+    /* ---------- how to buy (small batch) ---------- */
+    .howbuy {
+      padding: 48px 32px 0;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .howbuy__inner {
+      background: var(--cream-warm);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 40px 40px 44px;
+    }
+
+    .howbuy .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      margin-bottom: 10px;
+    }
+
+    .howbuy h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .howbuy__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px 48px;
+      align-items: start;
+    }
+
+    .howbuy h3 {
+      font-family: var(--serif);
+      font-size: 17px;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .howbuy ol {
+      margin: 0;
+      padding-left: 1.25em;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .howbuy ol li {
+      margin-bottom: 8px;
+    }
+
+    .howbuy ul {
+      margin: 0;
+      padding-left: 1.2em;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .howbuy ul li {
+      margin-bottom: 6px;
+    }
+
+    .howbuy__note {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .howbuy__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .howbuy__inner {
+        padding: 32px 24px 36px;
+      }
+    }
+
+    /* ---------- DM strip ---------- */
+    .dm {
+      margin: 0 32px;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 28px;
+      padding: 56px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .dm h2 {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .dm h2 .hand {
+      font-family: var(--hand);
+      color: var(--pink);
+      font-size: 1.15em;
+    }
+
+    .dm p {
+      color: rgba(251, 246, 238, 0.75);
+      margin: 0;
+      max-width: 540px;
+    }
+
+    .dm__buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dm .btn--ghost {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+
+    .dm .btn--ghost:hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .dm .btn--primary {
+      background: var(--pink);
+      color: var(--ink);
+    }
+
+    /* ---------- shipping bar ---------- */
+    .ship {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--cream-warm);
+    }
+
+    .ship__cell {
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .ship__cell:last-child {
+      border-right: none;
+    }
+
+    .ship__cell strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .ship__cell span {
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      background: var(--cream);
+      padding: 64px 0 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .foot__grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .foot__brand p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      max-width: 320px;
+      margin: 14px 0 18px;
+    }
+
+    .foot__col h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+      font-weight: 500;
+    }
+
+    .foot__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .foot__col li {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .foot__col a:hover {
+      color: var(--pink-deep);
+    }
+
+    .foot__bottom {
+      border-top: 1px dashed var(--line);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .foot__bottom .heart {
+      color: var(--pink-deep);
+      font-family: var(--hand);
+      font-size: 16px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 980px) {
+      .nav__inner {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .hero__grid,
+      .about__grid,
+      .dm {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .insta__row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .ship {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ship__cell:nth-child(2) {
+        border-right: none;
+      }
+
+      .foot__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about,
+      .dm {
+        margin: 0 16px;
+        padding: 40px 28px;
+      }
+
+      .wrap {
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Hand-carried from Seoul</span>
+      <span>한정수량 · small batches</span>
+      <span>DM us anytime on insta</span>
+      <span>Hand-carried from Seoul</span>
+      <span>한정수량 · small batches</span>
+      <span>DM us anytime on insta</span>
+    </div>
+  </div>
+
+  <!-- nav -->
+  <header class="nav">
+    <div class="nav__inner">
+      <div class="logo">
+        <span class="logo__mark">딩</span>
+        <div>
+          Ding's Korea Finds
+          <small>cute things from seoul · Norwalk, CA</small>
+        </div>
+      </div>
+      <nav class="nav__links">
+        <a href="#arrivals">Finds</a>
+        <a href="#about">About Ding</a>
+        <a href="#how-to-buy">How to buy</a>
+        <a href="#dm">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <button type="button" class="icon-btn" aria-label="Search">⌕</button>
+        <a class="cart-pill" href="#how-to-buy">How to buy</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <div class="hero__korean">Seoul → Norwalk</div>
+        <h1>Cute finds from Korea, <span class="hand">now in</span> Norwalk, California.</h1>
+        <p class="lede">Hi, I'm Ding. I bring home small batches of makeup and skincare I actually use from normal shops in Seoul, then ship from my place in Norwalk. This is me clearing extras and small picks, not a big retail operation. When it's gone, it's gone.</p>
+        <div class="hero__buttons">
+          <a href="#arrivals" class="btn btn--primary">Browse finds →</a>
+          <a href="#how-to-buy" class="btn btn--ghost">How to order &amp; pay</a>
+          <span class="hero__note">handpicked with care</span>
+        </div>
+        <div class="hero__meta">
+          <div><strong>Browse</strong> photos &amp; blurbs on each item</div>
+          <div><strong>Next drop</strong>6pm PT · see Instagram</div>
+          <div><strong>SoCal</strong>USPS from Norwalk · local meetups by DM if you’re close</div>
+        </div>
+      </div>
+
+      <div class="collage">
+        <div class="polaroid p1">
+          <div class="ph ph--photo" style="aspect-ratio: 4/5">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="1200" height="1500" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, water-glow cushion, Oblique Point lettering"></div>
+          </div>
+          <div class="polaroid__caption">cushion glow ✿</div>
+        </div>
+        <div class="polaroid p2">
+          <div class="ph ph--photo" style="aspect-ratio: 1/1">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7886.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Six-pot nail glitter set in retail packaging"></div>
+          </div>
+          <div class="polaroid__caption">nail glitter stash</div>
+        </div>
+        <div class="polaroid p3">
+          <div class="ph ph--photo" style="aspect-ratio: 4/3">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7875.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Sandalwood hand cream tube with Van Gogh Almond Blossom art"></div>
+          </div>
+          <div class="polaroid__caption">desk-side favorite</div>
+        </div>
+        <div class="sticker sticker--hero">
+          only<br>in Norwalk
+          <em>limited</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARRIVALS -->
+  <section class="arrivals wrap" id="arrivals">
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Just unpacked · in Norwalk now</div>
+        <h2>Finds <span class="hand">from Seoul</span></h2>
+      </div>
+      <div class="sec-head__right">
+        Prices are at or below what I usually see on US import sites (before shipping). <strong>Shipping is extra</strong> (not in the price shown).<br>
+        Personal small-batch stuff, not a warehouse or full-time shop.<br>
+        <a href="#arrivals">scroll the grid →</a>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7868.jpg" width="800" height="800" loading="lazy" decoding="async" alt="VT Reedle Shot Essence Lip Plumper in Pure Red retail box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">VT · lip plumper · #Pure Red</p>
+          <h3 class="card__title">VT Reedle Shot Essence Lip Plumper</h3>
+          <p class="card__sub">Plumping gloss in an apple-red kind of red. Has that silicone tip thing on the tube. I wear it when I want color without dry lips.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7870.jpg" width="800" height="800" loading="lazy" decoding="async" alt="MEDIPEEL Melanon X dark spot cream box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Medipeel · dark-spot cream · 30ml</p>
+          <h3 class="card__title">MEDIPEEL+ Melanon X Dark Spot Cream</h3>
+          <p class="card__sub">For sun spots and uneven patches. The box talks up niacinamide and tranexamic acid. I use a little at night on stubborn marks.</p>
+          <div class="card__row">
+            <span class="card__price">$14</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7876.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Play 101 Water Glow Pop tint shade 02 Pink Monggeul box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Etude Play 101 · lip tint · 02</p>
+          <h3 class="card__title">Etude Play 101 Water Glow Pop · 02 Pink Mong-geul</h3>
+          <p class="card__sub">Watery tint, shiny not matte. 02 is a bright pink on me, nice when I want a full lip without trying hard.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7878.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Dropbe vegan formula colors stick for blush and shading"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Dropbe. · face stick · contour / shadow</p>
+          <h3 class="card__title">Dropbe. Vegan Colors Stick (shading)</h3>
+          <p class="card__sub">Cream stick for natural contour. The Korean copy says shading, not blush. I smudge it under the cheekbone and blend with a finger.</p>
+          <div class="card__row">
+            <span class="card__price">$8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7894.jpg" width="800" height="800" loading="lazy" decoding="async" alt="VPROVE Marine Tone-Up Cover suncream SPF 50 tube"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">VPROVE · sunscreen · tone-up</p>
+          <h3 class="card__title">VPROVE Marine Tone-Up Cover Suncream</h3>
+          <p class="card__sub">SPF 50+ PA++++. Slightly brightening, like a light veil, not thick beach paste. I wear it under makeup when I skip real base.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7884.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Dinto Prelude Nostalgia eye palette 73 Little Salome box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Dinto · eyeshadow · #73</p>
+          <h3 class="card__title">Dinto Prelude Nostalgia Eye Palette · 73 Little Salome</h3>
+          <p class="card__sub">Cool pink leaning shades, mattes and glitters, it says so on the flap. I use it when I want a soft pink eye that still looks put together.</p>
+          <div class="card__row">
+            <span class="card__price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7886.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Six jar nail glitter accessory set in packaging"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Nail glitter · 6 mini pots</p>
+          <h3 class="card__title">6-Pot Nail Glitter Set</h3>
+          <p class="card__sub">Six glitters on one card (chunky holo, fine pink, silver, whatever’s on there). I tap them on with clear polish when plain nails feel boring.</p>
+          <div class="card__row">
+            <span class="card__price">$7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7898.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC Enjoy Aqua Mild sun essence SPF 50 box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Scinic · sun essence · SPF 50+</p>
+          <h3 class="card__title">Scinic Enjoy Aqua Mild Sun Essence</h3>
+          <p class="card__sub">Feels more like a lotion than paste. SPF 50+ PA++++. I keep one by the door for “I forgot sunscreen” mornings.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7869.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Daily Makeup individual eye lash clusters No.11 Black 8mm"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Daily Makeup · individual lashes</p>
+          <h3 class="card__title">Daily Makeup Individual Lashes · No. 11 Black</h3>
+          <p class="card__sub">Tiny clusters for filling gaps. 8mm, black, 45 pieces on the card. No glue in the package, same as in the store.</p>
+          <div class="card__row">
+            <span class="card__price">$6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7873.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Play 101 Slim Eyebrow pencil 01 Soft Brown box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Etude Play 101 · brow pencil · 01</p>
+          <h3 class="card__title">Etude Play 101 Slim Eyebrow · 01 Soft Brown</h3>
+          <p class="card__sub">Super skinny lead for fake brow hairs, not one thick block. Soft brown looks natural on me if your hair isn’t jet black.</p>
+          <div class="card__row">
+            <span class="card__price">$7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7874.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Slim brown eyeliner in pink and charcoal box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Drugstore find · brown pencil liner</p>
+          <h3 class="card__title">Slim Brown Eyeliner (pencil)</h3>
+          <p class="card__sub">Basic brown liner in the loud pink box. Nothing fancy, just easy for tightlining or a soft lower lash line.</p>
+          <div class="card__row">
+            <span class="card__price">$5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7877.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box alternate angle"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Etude Play 101 · lip gloss</p>
+          <h3 class="card__title">Etude Play 101 Coloring Gloss</h3>
+          <p class="card__sub">Glossy, not gluey. More wet lip than lipstick. On me the box color reads like a dusty rose.</p>
+          <div class="card__row">
+            <span class="card__price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7879.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Dropbe vegan colors stick inner glow blush pink variant"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Dropbe. · cream blush stick</p>
+          <h3 class="card__title">Dropbe. Vegan Colors Stick (blush)</h3>
+          <p class="card__sub">Not the red contour stick. This card is blush / inner glow pink. Dab on cheeks and blend, looks like you just walked in from the cold.</p>
+          <div class="card__row">
+            <span class="card__price">$8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7881.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Water Glow Pop tint 03 Salmon Sparkle box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Etude Play 101 · lip tint · 03</p>
+          <h3 class="card__title">Etude Play 101 Water Glow Pop · 03 Salmon Sparkle</h3>
+          <p class="card__sub">Same watery tint line as 02, but 03 is more coral-salmon on me. Still that juicy, not-matte finish.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7882.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Aegyo-sal volume liner Champagne Beige glitter pencil"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Under-eye pencil · champagne glitter</p>
+          <h3 class="card__title">Aegyo-sal Volume Liner · Champagne Beige (glitter)</h3>
+          <p class="card__sub">For the little puff under your eye. Adds sparkle so you look less dead in photos. Pencil, easy to smudge with a finger.</p>
+          <div class="card__row">
+            <span class="card__price">$6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7883.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Lovely Makeup dual-ended gray brown eyebrow pencil"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Lovely Makeup · brow pencil</p>
+          <h3 class="card__title">Lovely Makeup Eye Brow Pencil · Gray Brown</h3>
+          <p class="card__sub">Pencil on one end, spoolie on the other, usual drugstore setup. Gray-brown works if black brows look too harsh on you.</p>
+          <div class="card__row">
+            <span class="card__price">$5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7885.jpg" width="800" height="800" loading="lazy" decoding="async" alt="The Professional Eye Lash three pair set clear band"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">False lashes · 3 pairs · clear band</p>
+          <h3 class="card__title">The Professional Eye Lash · 3 Pair Set</h3>
+          <p class="card__sub">Strip lashes on a clear band, kind of wispy, not full drag. Glue sold separately, the purple side of the card says so.</p>
+          <div class="card__row">
+            <span class="card__price">$6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7888.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Berrisom brow tattoo pack shade 01 box and card"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Berrisom · peel-off brow tint</p>
+          <h3 class="card__title">Berrisom Brow Tattoo Pack · 01</h3>
+          <p class="card__sub">Paint it on, let it dry, peel it off, brows stay tinted for days. Messy the first time, peek at the pictures on the back before you go in.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7889.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SON and PARK Glow Red Valley 01 lip box alternate view"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Son &amp; Park · lip · shade 01</p>
+          <h3 class="card__title">Son &amp; Park Glow · 01 Red Valley</h3>
+          <p class="card__sub">Glossy red tint. Box says glassy / bead shine finish. Mint and red packaging still makes me smile on the shelf.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7890.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Berrisom lip tattoo pack shade 02 coral peel-off tint"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Berrisom · peel-off lip tint</p>
+          <h3 class="card__title">Berrisom Lip Tattoo Pack · 02</h3>
+          <p class="card__sub">Same peel idea as the brow one but for lips. Wait till it dries, peel the film, stain left behind. 02 reads coral pink on me.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7892.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Mute Memory shade 02 soft pink makeup box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Shade 02 · “Mute Memory” on box</p>
+          <h3 class="card__title">Mute Memory · 02</h3>
+          <p class="card__sub">Small pinkish compact style box. I just read what’s printed on top. If you know this line you already know if you want it.</p>
+          <div class="card__row">
+            <span class="card__price">$11</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7893.jpg" width="800" height="800" loading="lazy" decoding="async" alt="ART NAIL mermaid type ring ring pink flake nail polish bottle"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Art Nail · glitter polish</p>
+          <h3 class="card__title">Art Nail · Mermaid Type “ring ring”</h3>
+          <p class="card__sub">Pale pink jelly with big flaky shimmer, looks extra under a lamp. Weekend nails for me, not one coat and run to the office.</p>
+          <div class="card__row">
+            <span class="card__price">$7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7871.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Pink volume mascara from Korea on the counter, easy washable formula"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Drugstore find · washable volume</p>
+          <h3 class="card__title">Easy Washable Volume Mascara</h3>
+          <p class="card__sub">Pink card with before and after on the package. Washes off with warm water. I grab one every trip for friends who keep asking what’s on my lashes.</p>
+          <div class="card__row">
+            <span class="card__price">$6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7872.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Etude Play 101 · lip gloss</p>
+          <h3 class="card__title">Etude Play 101 Coloring Gloss (box)</h3>
+          <p class="card__sub">Same glossy lip line as the tube I already listed, just the outer box angle. Wet look, not thick lipstick.</p>
+          <div class="card__row">
+            <span class="card__price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7875.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Sandalwood hand cream tube with Van Gogh Almond Blossom art"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Hand cream · sandalwood</p>
+          <h3 class="card__title">Van Gogh Almond Blossom Hand Cream</h3>
+          <p class="card__sub">Pretty tube I bought for the art. Sandalwood scent, lives on my desk after I wash dishes.</p>
+          <div class="card__row">
+            <span class="card__price">$8</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7880.jpg" width="800" height="800" loading="lazy" decoding="async" alt="IPKN personal tinted gloss duo box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">IPKN · tinted gloss duo</p>
+          <h3 class="card__title">IPKN Personal Tinted Gloss Duo</h3>
+          <p class="card__sub">Two glosses in one card. Handy when you want options in a small bag and don’t want three tubes rolling around.</p>
+          <div class="card__row">
+            <span class="card__price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7887.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SON &amp; PARK Glow Red Valley lip box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Son &amp; Park · lip · 01</p>
+          <h3 class="card__title">Son &amp; Park Glow · 01 Red Valley (front box)</h3>
+          <p class="card__sub">Another photo of the same 01 Red Valley I already carry. Mint and red box, glassy on the lips.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Jelly glow lip and cheek Apple Mousse box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Lip &amp; cheek · jelly finish</p>
+          <h3 class="card__title">Jelly Glow Lip &amp; Cheek · Apple Mousse</h3>
+          <p class="card__sub">Apple mousse shade. Creamy tint for cheeks or lips when you want one thing to do both jobs.</p>
+          <div class="card__row">
+            <span class="card__price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7895.jpg" width="800" height="800" loading="lazy" decoding="async" alt="VPROVE Marine tone-up cover suncream box SPF 50"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">VPROVE · sunscreen · flat box</p>
+          <h3 class="card__title">VPROVE Marine Tone-Up Cover (box flat lay)</h3>
+          <p class="card__sub">Same SPF 50+ PA++++ tone-up as the tube listing, different photo on my counter so you can see the whole carton.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="800" height="800" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, water-glow cushion, Oblique Point lettering"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">TAG · cushion · Dewy Skin</p>
+          <h3 class="card__title">TAG Dewy Skin Cushion</h3>
+          <p class="card__sub">Water glow cushion in the Oblique Point packaging. For light coverage days when I don’t want full foundation.</p>
+          <div class="card__row">
+            <span class="card__price">$18</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7897.jpg" width="800" height="800" loading="lazy" decoding="async" alt="IPKN personal powder pact pink box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">IPKN · powder pact</p>
+          <h3 class="card__title">IPKN Personal Powder Pact</h3>
+          <p class="card__sub">Pink compact style box. Blotting or setting powder for touch ups in the car mirror.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__photo">
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC powdery tone-up sun cream box"></div>
+          <div class="card__quick">quick add to cart</div>
+        </div>
+        <div class="card__meta">
+          <p class="card__korean">Scinic · tone-up sun · powdery</p>
+          <h3 class="card__title">Scinic Powdery Tone-Up Sun Cream</h3>
+          <p class="card__sub">Different Scinic sun line than the aqua mild essence. Box leans more powdery. Nice if you like a velvety tone up.</p>
+          <div class="card__row">
+            <span class="card__price">$12</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT DING -->
+  <section id="about">
+    <div class="about">
+      <div class="about__grid">
+        <div class="about__photo">
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7894.jpg" width="1000" height="1250" loading="lazy" decoding="async" alt="VPROVE Marine Tone-Up Cover sunscreen tube on the counter"></div>
+        </div>
+        <div>
+          <div class="about__kicker">who is ding</div>
+          <h2>Ding, sunscreen, and a suitcase full of Seoul finds.</h2>
+          <p>I'm Ding. I live in Norwalk, California. This is just small finds I'm clearing out, not a big restock. When it's gone, it's gone.</p>
+          <p>I pick things I’d actually use myself, especially sunscreen. Sunny California means skin health comes first. Everything’s packed at my kitchen table and I try to get it out the door quick. If you don’t see something anymore, it’s probably because I only grabbed like six.</p>
+          <div class="about__sig">딩
+            <small>Ding · Seoul + Norwalk</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM-STYLE FEED -->
+  <section class="insta">
+    <div class="insta__head">
+      <h2>From the camera roll</h2>
+      <p>follow along <a class="insta__handle" href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">@dingskoreafinds</a></p>
+    </div>
+    <div class="insta__row">
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7872.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box"></div>
+      </div>
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7880.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal tinted gloss duo box"></div>
+      </div>
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7887.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SON &amp; PARK Glow Red Valley lip box"></div>
+      </div>
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Jelly glow lip and cheek Apple Mousse box"></div>
+      </div>
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7897.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal powder pact pink box"></div>
+      </div>
+      <div class="insta__cell">
+        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SCINIC powdery tone-up sun cream box"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY (no cart, small batch) -->
+  <section class="howbuy wrap" id="how-to-buy">
+    <div class="howbuy__inner">
+      <div class="kicker">Small batch · no cart checkout</div>
+      <h2>How buying works</h2>
+      <p class="howbuy__note" style="margin-top:0;margin-bottom:18px">Just me selling a few things I brought back, super informal. No corporate checkout, no giant inventory.</p>
+      <div class="howbuy__grid">
+        <div>
+          <h3>Order in 4 steps</h3>
+          <ol>
+            <li><strong>DM on Instagram</strong> (or email) with what you want. Use the product name from this page or send a screenshot.</li>
+            <li><strong>Send your ZIP</strong> so I can quote <strong>item total + shipping</strong> (shipping is never in the list price).</li>
+            <li><strong>Pay</strong> with one of the SoCal-friendly options below. I hold the item once payment clears.</li>
+            <li><strong>I ship</strong> from Norwalk, usually <strong>USPS with tracking</strong>. If you’re <strong>nearby</strong> (around Norwalk or southeast LA County), message me and we can sometimes <strong>meet in public</strong> somewhere we both pick.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>How people in SoCal usually pay</h3>
+          <p style="margin:0 0 10px;font-size:14px;color:var(--ink-soft);line-height:1.5">Most people just pay with whatever app they already have. No fancy checkout needed.</p>
+          <ul>
+            <li><strong>Venmo</strong>, super normal here, person to person, quick in SoCal.</li>
+            <li><strong>Apple Cash</strong> if you both use iPhone / Wallet.</li>
+            <li><strong>Cash</strong> only for <strong>in person meetups</strong>, and pick a public spot you’re ok with.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="howbuy__note">There’s no cart on this site on purpose. Stock is tiny and I check every order myself. <strong>Tip:</strong> put the handles you actually use (Venmo @, whatever) in your <strong>Instagram bio</strong> or a highlight so people stop asking every time. If DMs ever explode I can bolt on Stripe, Square, or a simple Shopify page later, same photos, less typing.</p>
+      <p class="howbuy__note" style="margin-top:14px">Numbers on the page are the item only. I’ll spell out your full total in the DM before you pay (shipping, anything else we need to include) so nothing’s a surprise. This isn’t automated checkout or tax software, it’s person to person.</p>
+    </div>
+  </section>
+
+  <!-- DM strip -->
+  <section id="dm">
+    <div class="dm">
+      <div>
+        <h2>Questions? Just <span class="hand">DM us.</span></h2>
+        <p>Something on this page, stuck between two tints, shipping question, whatever, just message me. I’m not a ticket system. I usually answer within a day.
+        </p>
+      </div>
+      <div class="dm__buttons">
+        <a class="btn btn--primary" href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">DM on Instagram</a>
+        <a class="btn btn--ghost" href="mailto:hello@dingskoreafinds.com">Email Ding</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- shipping bar -->
+  <div class="ship wrap" id="shipping" style="margin-top: 64px;">
+    <div class="ship__cell"><strong>Ships from Norwalk, CA</strong><span>USPS · tracking</span></div>
+    <div class="ship__cell"><strong>Flat-rate US shipping</strong><span>$6 anywhere in the US</span></div>
+    <div class="ship__cell"><strong>Hand-packed</strong><span>w/ a little note</span></div>
+    <div class="ship__cell"><strong>Limited &amp; honest</strong><span>only what ding loves</span></div>
+  </div>
+
+  <!-- footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <div class="logo">
+            <span class="logo__mark">딩</span>
+            <div>Ding's Korea Finds<small>cute things from seoul · Norwalk, CA</small></div>
+          </div>
+          <p>Just me from my kitchen table in Norwalk, clearing a few Korean finds, not a big company. I shoot listings at home and try to ship fast. Thanks for poking around.</p>
+        </div>
+        <div class="foot__col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#arrivals">Finds</a></li>
+            <li><a href="#how-to-buy">How to buy &amp; pay</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#about">About Ding</a></li>
+            <li><a href="#about">Next Seoul trip</a></li>
+            <li><a href="#shipping">Shipping &amp; returns</a></li>
+            <li><a href="#how-to-buy">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4>Stay close</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">Instagram · @dingskoreafinds</a></li>
+            <li><a href="https://www.tiktok.com/@dingsfinds" target="_blank" rel="noopener noreferrer">TikTok · @dingsfinds</a></li>
+            <li><a href="mailto:hello@dingskoreafinds.com">Email · hello@dingskoreafinds.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot__bottom">
+        <span>© 2026 Ding's Korea Finds · made in Norwalk &amp; Seoul</span>
+        <span class="heart">made with care, slowly.</span>
+        <span>terms · privacy · <a href="#dm" style="color:inherit;text-decoration:none">contact</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- mount for tweaks -->
+  <div id="tweaks-root"></div>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    const { useEffect } = React;
+    const { TweaksPanel, useTweaks, TweakSection, TweakColor, TweakRadio, TweakToggle } = window;
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "palette": ["#FBF6EE", "#F4C5C0", "#D98A82", "#4A3F35"],
+      "headingFont": "serif",
+      "showHandwriting": true,
+      "polaroidTilt": true
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      useEffect(() => {
+        const r = document.documentElement.style;
+        r.setProperty('--cream', t.palette[0]);
+        r.setProperty('--pink', t.palette[1]);
+        r.setProperty('--pink-deep', t.palette[2]);
+        r.setProperty('--ink', t.palette[3]);
+        // derive softer pink bg
+        r.setProperty('--pink-soft', t.palette[1] + '55');
+
+        // heading font
+        const fontMap = {
+          serif: '"Gowun Batang", Georgia, serif',
+          hand: '"Nanum Pen Script", cursive',
+          mono: '"DM Mono", monospace',
+        };
+        r.setProperty('--serif', fontMap[t.headingFont] || fontMap.serif);
+
+        // show / hide handwriting bits
+        document.querySelectorAll('.hand, .hero__note, .insta__head p, .about__sig, .polaroid__caption')
+          .forEach(el => { el.style.display = t.showHandwriting ? '' : 'none'; });
+
+        // polaroid tilts
+        document.querySelectorAll('.collage .polaroid, .about__photo').forEach(el => {
+          el.style.transform = t.polaroidTilt ? '' : 'rotate(0deg)';
+        });
+      }, [t]);
+
+      return (
+        <TweaksPanel title="Tweaks">
+          <TweakSection title="palette">
+            <TweakColor
+              label="Palette"
+              value={t.palette}
+              onChange={(v) => setTweak('palette', v)}
+              options={[
+                ['#FBF6EE', '#F4C5C0', '#D98A82', '#4A3F35'],
+                ['#FFF8F0', '#FFE3D6', '#E08B6F', '#3A2E26'],
+                ['#F4F0E6', '#D8E1C8', '#7A8C68', '#3D4035'],
+                ['#FFF6F8', '#F7B5C1', '#C45A75', '#3A2C32'],
+                ['#F2EDE3', '#E8D5B7', '#B0855E', '#3A2E22']
+              ]}
+            />
+          </TweakSection>
+          <TweakSection title="type">
+            <TweakRadio
+              label="Heading font"
+              value={t.headingFont}
+              onChange={(v) => setTweak('headingFont', v)}
+              options={[
+                { value: 'serif', label: 'Serif' },
+                { value: 'hand', label: 'Hand' },
+              ]}
+            />
+            <TweakToggle
+              label="Show handwriting"
+              value={t.showHandwriting}
+              onChange={(v) => setTweak('showHandwriting', v)}
+            />
+          </TweakSection>
+          <TweakSection title="layout">
+            <TweakToggle
+              label="Tilt polaroids & tape"
+              value={t.polaroidTilt}
+              onChange={(v) => setTweak('polaroidTilt', v)}
+            />
+          </TweakSection>
+        </TweaksPanel>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+  </script>
+
+</body>
+
+</html>
