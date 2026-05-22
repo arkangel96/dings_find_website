@@ -201,7 +201,74 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
+      cursor: pointer;
+      color: inherit;
     }
+
+    .nav__cta .icon-btn:hover {
+      border-color: var(--ink-soft);
+      background: var(--paper);
+    }
+
+    .nav__cta .icon-btn[aria-expanded="true"] {
+      border-color: var(--pink-deep);
+      background: var(--pink-soft);
+    }
+
+    .nav__search-drawer {
+      border-top: 1px solid var(--line);
+      background: rgba(251, 246, 238, 0.98);
+      padding: 12px 0 16px;
+    }
+
+    .nav__search-drawer[hidden] {
+      display: none !important;
+    }
+
+    .nav__search-drawer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .site-search__input {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--mono);
+      font-size: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .site-search__input:focus {
+      outline: 2px solid var(--pink-deep);
+      outline-offset: 2px;
+    }
+
+    .site-search__clear {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--cream-warm);
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .site-search__clear:hover {
+      border-color: var(--ink-soft);
+    }
+
 
     .cart-pill,
     a.cart-pill {
@@ -896,27 +963,76 @@
       text-decoration: underline;
     }
 
-    .insta__row {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
+    .insta__carousel {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 24px;
     }
 
-    .insta__row .insta__cell {
+    .insta__viewport {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      container-type: inline-size;
+      container-name: instaroll;
+      --visible: 5;
+      --insta-gap: 12px;
+    }
+
+    .insta__track {
+      display: flex;
+      gap: var(--insta-gap);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .insta__track .insta__cell {
       position: relative;
+      flex: 0 0 calc((100cqi - (var(--visible) - 1) * var(--insta-gap)) / var(--visible));
+      min-width: 0;
       aspect-ratio: 1;
       border-radius: 10px;
       overflow: hidden;
       transition: transform 0.25s, filter 0.25s;
-      cursor: pointer;
     }
 
-    .insta__row .insta__cell:hover {
+    .insta__track .insta__cell:hover {
       transform: scale(1.03);
       filter: brightness(1.04);
+    }
+
+    .insta__nav {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--cream-warm);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, border-color 0.2s;
+    }
+
+    .insta__nav:hover {
+      background: var(--paper);
+      border-color: var(--ink-soft);
+      transform: scale(1.06);
+    }
+
+    .insta__nav:active {
+      transform: scale(0.96);
+    }
+
+    .insta__nav:focus-visible {
+      outline: 2px solid var(--pink-deep);
+      outline-offset: 3px;
     }
 
     /* ---------- how to buy (small batch) ---------- */
@@ -1065,7 +1181,7 @@
     /* ---------- shipping bar ---------- */
     .ship {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -1185,16 +1301,29 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .insta__row {
-        grid-template-columns: repeat(3, 1fr);
+      .insta__viewport {
+        --visible: 3;
+      }
+
+      .insta__carousel {
+        padding: 0 16px;
+      }
+
+      .nav__search-drawer-inner {
+        padding: 0 20px;
       }
 
       .ship {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
       }
 
-      .ship__cell:nth-child(2) {
+      .ship__cell {
         border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .ship__cell:last-child {
+        border-bottom: none;
       }
 
       .foot__grid {
@@ -1213,6 +1342,30 @@
 
       section {
         padding: 56px 0;
+      }
+
+      .insta__nav {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .insta__viewport {
+        --visible: 2;
+      }
+
+      .insta__nav {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .insta__track {
+        transition: none;
       }
     }
   </style>
@@ -1249,8 +1402,15 @@
         <a href="#dm">Contact</a>
       </nav>
       <div class="nav__cta">
-        <button type="button" class="icon-btn" aria-label="Search">⌕</button>
+        <button type="button" class="icon-btn" id="site-search-toggle" aria-label="Search this page" aria-expanded="false" aria-controls="site-search-drawer" title="Search finds">⌕</button>
         <a class="cart-pill" href="#how-to-buy">How to buy</a>
+      </div>
+    </div>
+    <div class="nav__search-drawer" id="site-search-drawer" hidden>
+      <div class="nav__search-drawer-inner">
+        <input type="search" id="site-search-input" class="site-search__input" placeholder="Type a brand, product, SPF, shade…" autocomplete="off" enterkeyhint="search" aria-label="Search finds on this page" />
+        <button type="button" class="site-search__clear" id="site-search-clear">Clear</button>
+        <p class="site-search__status" id="site-search-status" aria-live="polite"></p>
       </div>
     </div>
   </header>
@@ -1277,21 +1437,21 @@
       <div class="collage">
         <div class="polaroid p1">
           <div class="ph ph--photo" style="aspect-ratio: 4/5">
-            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="1200" height="1500" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, water-glow cushion, Oblique Point lettering"></div>
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="1200" height="1500" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, Touch A Gleam, Oblique Point, packaging lists 01 Water Glow 02 Natural Cover 03 Pink Beige"></div>
           </div>
           <div class="polaroid__caption">cushion glow ✿</div>
         </div>
         <div class="polaroid p2">
           <div class="ph ph--photo" style="aspect-ratio: 1/1">
-            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7886.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Six-pot nail glitter set in retail packaging"></div>
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7898.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="SCINIC Enjoy Aqua Mild sun essence SPF 50+ PA++++ box on counter"></div>
           </div>
-          <div class="polaroid__caption">nail glitter stash</div>
+          <div class="polaroid__caption">sunscreen rotation ✿</div>
         </div>
         <div class="polaroid p3">
           <div class="ph ph--photo" style="aspect-ratio: 4/3">
-            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7875.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Sandalwood hand cream tube with Van Gogh Almond Blossom art"></div>
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7897.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="IPKN personal powder pact pink box on counter"></div>
           </div>
-          <div class="polaroid__caption">desk-side favorite</div>
+          <div class="polaroid__caption">powder compact pick</div>
         </div>
         <div class="sticker sticker--hero">
           only<br>in Norwalk
@@ -1364,7 +1524,7 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7878.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Dropbe vegan formula colors stick for blush and shading"></div>
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7878.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Dropbe vegan formula colors stick for natural shading and contour, 음영"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
@@ -1424,11 +1584,11 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7898.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC Enjoy Aqua Mild sun essence SPF 50 box"></div>
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7898.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC Enjoy Aqua Mild sun essence SPF 50+ PA++++ box"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
-          <p class="card__korean">Scinic · sun essence · SPF 50+</p>
+          <p class="card__korean">Scinic Enjoy · Aqua Mild · SPF 50+ PA++++</p>
           <h3 class="card__title">Scinic Enjoy Aqua Mild Sun Essence</h3>
           <p class="card__sub">Feels more like a lotion than paste. SPF 50+ PA++++. I keep one by the door for “I forgot sunscreen” mornings.</p>
           <div class="card__row">
@@ -1490,7 +1650,7 @@
         <div class="card__meta">
           <p class="card__korean">Etude Play 101 · lip gloss</p>
           <h3 class="card__title">Etude Play 101 Coloring Gloss</h3>
-          <p class="card__sub">Glossy, not gluey. More wet lip than lipstick. On me the box color reads like a dusty rose.</p>
+          <p class="card__sub">Glossy, not gluey. More wet lip than lipstick. The tube in the photo reads warm terracotta rose on me.</p>
           <div class="card__row">
             <span class="card__price">$10</span>
           </div>
@@ -1514,13 +1674,13 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7881.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Water Glow Pop tint 03 Salmon Sparkle box"></div>
+          <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7881.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Etude Play 101 Water Glow Pop tint shade 03 box, 살구 반짝톡 apricot sparkle"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
-          <p class="card__korean">Etude Play 101 · lip tint · 03</p>
-          <h3 class="card__title">Etude Play 101 Water Glow Pop · 03 Salmon Sparkle</h3>
-          <p class="card__sub">Same watery tint line as 02, but 03 is more coral-salmon on me. Still that juicy, not-matte finish.</p>
+          <p class="card__korean">Etude Play 101 · lip tint · 03 살구 반짝톡</p>
+          <h3 class="card__title">Etude Play 101 Water Glow Pop · 03 Apricot Sparkle</h3>
+          <p class="card__sub">Same watery tint line as 02. Shade 03 matches the box copy 살구 반짝톡 (apricot sparkle)—warmer, more peach-apricot on me than 02 pink. Still that juicy, not-matte finish.</p>
           <div class="card__row">
             <span class="card__price">$12</span>
           </div>
@@ -1724,13 +1884,13 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Jelly glow lip and cheek Apple Mousse box"></div>
+          <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Jelly glow lip and cheek shade 03 Apple Mousse box, soft apple red"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
-          <p class="card__korean">Lip &amp; cheek · jelly finish</p>
-          <h3 class="card__title">Jelly Glow Lip &amp; Cheek · Apple Mousse</h3>
-          <p class="card__sub">Apple mousse shade. Creamy tint for cheeks or lips when you want one thing to do both jobs.</p>
+          <p class="card__korean">Lip &amp; cheek · jelly · shade 03</p>
+          <h3 class="card__title">Jelly Glow Lip &amp; Cheek · 03 Apple Mousse</h3>
+          <p class="card__sub">Shade 03 Apple Mousse as printed on the box (소프트 애플 레드 젤리광 립앤치크). Creamy tint for cheeks or lips when you want one thing to do both jobs.</p>
           <div class="card__row">
             <span class="card__price">$10</span>
           </div>
@@ -1754,13 +1914,13 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="800" height="800" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, water-glow cushion, Oblique Point lettering"></div>
+          <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="800" height="800" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, Touch A Gleam, Oblique Point, packaging lists 01 Water Glow 02 Natural Cover 03 Pink Beige"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
-          <p class="card__korean">TAG · cushion · Dewy Skin</p>
+          <p class="card__korean">TAG · cushion · Dewy Skin · shades on box</p>
           <h3 class="card__title">TAG Dewy Skin Cushion</h3>
-          <p class="card__sub">Water glow cushion in the Oblique Point packaging. For light coverage days when I don’t want full foundation.</p>
+          <p class="card__sub">Touch A Gleam / Oblique Point packaging. The box lists three finish names—01 Water Glow, 02 Natural Cover, 03 Pink Beige. DM with your order if you need the exact shade of the unit I’m sending.</p>
           <div class="card__row">
             <span class="card__price">$18</span>
           </div>
@@ -1784,13 +1944,13 @@
 
       <div class="card">
         <div class="card__photo">
-          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC powdery tone-up sun cream box"></div>
+          <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="800" height="800" loading="lazy" decoding="async" alt="SCINIC Enjoy Base-Skip powdery tone-up sun cream SPF 50+ PA++++ box"></div>
           <div class="card__quick">quick add to cart</div>
         </div>
         <div class="card__meta">
-          <p class="card__korean">Scinic · tone-up sun · powdery</p>
-          <h3 class="card__title">Scinic Powdery Tone-Up Sun Cream</h3>
-          <p class="card__sub">Different Scinic sun line than the aqua mild essence. Box leans more powdery. Nice if you like a velvety tone up.</p>
+          <p class="card__korean">Scinic Enjoy · Base-Skip · powdery tone-up</p>
+          <h3 class="card__title">Scinic Enjoy Base-Skip Powdery Tone-Up Sun Cream</h3>
+          <p class="card__sub">Different line than Aqua Mild on this page—the box is the powdery “base-skip” tone-up sun. SPF 50+ PA++++. Nice if you like a velvety tone up.</p>
           <div class="card__row">
             <span class="card__price">$12</span>
           </div>
@@ -1821,30 +1981,114 @@
   </section>
 
   <!-- INSTAGRAM-STYLE FEED -->
-  <section class="insta">
+  <section class="insta" id="camera-roll">
     <div class="insta__head">
       <h2>From the camera roll</h2>
-      <p>follow along <a class="insta__handle" href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">@dingskoreafinds</a></p>
+      <p>follow along <a class="insta__handle" href="https://www.instagram.com/dingskoreafind/" target="_blank" rel="noopener noreferrer">@dingskoreafind</a></p>
     </div>
-    <div class="insta__row">
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7872.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box"></div>
+    <div class="insta__carousel" role="region" aria-label="Product photos from the camera roll" tabindex="0">
+      <button type="button" class="insta__nav insta__nav--prev" aria-controls="insta-roll-view" aria-label="Show previous photos">‹</button>
+      <div class="insta__viewport" id="insta-roll-view">
+        <div class="insta__track" id="insta-roll-track">
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7868.jpg" width="600" height="600" loading="lazy" decoding="async" alt="VT Reedle Shot Essence Lip Plumper in Pure Red retail box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7869.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Daily Makeup individual eye lash clusters No.11 Black 8mm"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7870.jpg" width="600" height="600" loading="lazy" decoding="async" alt="MEDIPEEL Melanon X dark spot cream box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7871.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Pink volume mascara from Korea on the counter, easy washable formula"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7872.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7873.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Slim Eyebrow pencil 01 Soft Brown box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7874.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Slim brown eyeliner in pink and charcoal box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7875.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Sandalwood hand cream tube with Van Gogh Almond Blossom art"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7876.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Water Glow Pop tint shade 02 Pink Monggeul box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7877.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Coloring Gloss box alternate angle"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7878.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Dropbe vegan formula colors stick for natural shading and contour, 음영"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7879.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Dropbe vegan colors stick inner glow blush pink variant"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7880.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal tinted gloss duo box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7881.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Etude Play 101 Water Glow Pop tint shade 03 box, 살구 반짝톡 apricot sparkle"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7882.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Aegyo-sal volume liner Champagne Beige glitter pencil"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7883.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Lovely Makeup dual-ended gray brown eyebrow pencil"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7884.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Dinto Prelude Nostalgia eye palette 73 Little Salome box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7885.jpg" width="600" height="600" loading="lazy" decoding="async" alt="The Professional Eye Lash three pair set clear band"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7886.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Six-pot nail glitter set in retail packaging"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7887.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SON &amp; PARK Glow Red Valley lip box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7888.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Berrisom brow tattoo pack shade 01 box and card"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7889.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SON and PARK Glow Red Valley 01 lip box alternate view"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7890.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Berrisom lip tattoo pack shade 02 coral peel-off tint"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Jelly glow lip and cheek shade 03 Apple Mousse box, soft apple red"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7892.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Mute Memory shade 02 soft pink makeup box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7893.jpg" width="600" height="600" loading="lazy" decoding="async" alt="ART NAIL mermaid type ring ring pink flake nail polish bottle"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7894.jpg" width="600" height="600" loading="lazy" decoding="async" alt="VPROVE Marine Tone-Up Cover suncream SPF 50 tube"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-m90" src="IMG_7895.jpg" width="600" height="600" loading="lazy" decoding="async" alt="VPROVE Marine tone-up cover suncream box SPF 50"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-90" src="IMG_7896.jpg" width="600" height="600" loading="lazy" decoding="async" alt="TAG Dewy Skin cushion box, Touch A Gleam, Oblique Point, packaging lists 01 Water Glow 02 Natural Cover 03 Pink Beige"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7897.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal powder pact pink box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7898.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SCINIC Enjoy Aqua Mild sun essence SPF 50+ PA++++ box"></div>
+          </div>
+          <div class="insta__cell">
+            <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SCINIC Enjoy Base-Skip powdery tone-up sun cream SPF 50+ PA++++ box"></div>
+          </div>
+        </div>
       </div>
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7880.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal tinted gloss duo box"></div>
-      </div>
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7887.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SON &amp; PARK Glow Red Valley lip box"></div>
-      </div>
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-180" src="IMG_7891.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Jelly glow lip and cheek Apple Mousse box"></div>
-      </div>
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7897.jpg" width="600" height="600" loading="lazy" decoding="async" alt="IPKN personal powder pact pink box"></div>
-      </div>
-      <div class="insta__cell">
-        <div class="photo-frame"><img class="product-shot rot-0" src="IMG_7899.jpg" width="600" height="600" loading="lazy" decoding="async" alt="SCINIC powdery tone-up sun cream box"></div>
-      </div>
+      <button type="button" class="insta__nav insta__nav--next" aria-controls="insta-roll-view" aria-label="Show next photos">›</button>
     </div>
   </section>
 
@@ -1888,8 +2132,8 @@
         </p>
       </div>
       <div class="dm__buttons">
-        <a class="btn btn--primary" href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">DM on Instagram</a>
-        <a class="btn btn--ghost" href="mailto:hello@dingskoreafinds.com">Email Ding</a>
+        <a class="btn btn--primary" href="https://www.instagram.com/dingskoreafind/" target="_blank" rel="noopener noreferrer">DM on Instagram</a>
+        <a class="btn btn--ghost" href="mailto:dingskoreafind@gmail.com">Email Ding</a>
       </div>
     </div>
   </section>
@@ -1897,7 +2141,6 @@
   <!-- shipping bar -->
   <div class="ship wrap" id="shipping" style="margin-top: 64px;">
     <div class="ship__cell"><strong>Ships from Norwalk, CA</strong><span>USPS · tracking</span></div>
-    <div class="ship__cell"><strong>Flat-rate US shipping</strong><span>$6 anywhere in the US</span></div>
     <div class="ship__cell"><strong>Hand-packed</strong><span>w/ a little note</span></div>
     <div class="ship__cell"><strong>Limited &amp; honest</strong><span>only what ding loves</span></div>
   </div>
@@ -1932,9 +2175,9 @@
         <div class="foot__col">
           <h4>Stay close</h4>
           <ul>
-            <li><a href="https://www.instagram.com/dingskoreafinds/" target="_blank" rel="noopener noreferrer">Instagram · @dingskoreafinds</a></li>
+            <li><a href="https://www.instagram.com/dingskoreafind/" target="_blank" rel="noopener noreferrer">Instagram · @dingskoreafind</a></li>
             <li><a href="https://www.tiktok.com/@dingsfinds" target="_blank" rel="noopener noreferrer">TikTok · @dingsfinds</a></li>
-            <li><a href="mailto:hello@dingskoreafinds.com">Email · hello@dingskoreafinds.com</a></li>
+            <li><a href="mailto:dingskoreafind@gmail.com">Email · dingskoreafind@gmail.com</a></li>
           </ul>
         </div>
       </div>
@@ -1945,6 +2188,206 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var root = document.querySelector('.insta__carousel');
+      if (!root) return;
+      var track = document.getElementById('insta-roll-track');
+      var viewport = document.getElementById('insta-roll-view');
+      var btnPrev = root.querySelector('.insta__nav--prev');
+      var btnNext = root.querySelector('.insta__nav--next');
+      if (!track || !viewport || !btnPrev || !btnNext) return;
+
+      var index = 0;
+
+      function gapPx() {
+        var g = getComputedStyle(track).gap || '12px';
+        var m = String(g).match(/([\d.]+)px/);
+        return m ? parseFloat(m[1]) : 12;
+      }
+
+      function cellStep() {
+        var cell = track.querySelector('.insta__cell');
+        if (!cell) return 0;
+        return cell.getBoundingClientRect().width + gapPx();
+      }
+
+      function visibleN() {
+        var v = getComputedStyle(viewport).getPropertyValue('--visible').trim();
+        var n = parseInt(v, 10);
+        return isNaN(n) || n < 1 ? 5 : n;
+      }
+
+      function maxIndex() {
+        var total = track.children.length;
+        var v = visibleN();
+        return Math.max(0, total - v);
+      }
+
+      function clampIndex() {
+        var max = maxIndex();
+        if (index > max) index = max;
+      }
+
+      function update() {
+        clampIndex();
+        var step = cellStep();
+        track.style.transform = 'translate3d(' + (-index * step) + 'px,0,0)';
+      }
+
+      function go(delta) {
+        var max = maxIndex();
+        var span = max + 1;
+        if (span < 1) span = 1;
+        index = (index + delta + span * 32) % span;
+        update();
+      }
+
+      btnPrev.addEventListener('click', function () {
+        go(-1);
+      });
+      btnNext.addEventListener('click', function () {
+        go(1);
+      });
+
+      root.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          go(-1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          go(1);
+        }
+      });
+
+      if (typeof ResizeObserver !== 'undefined') {
+        var ro = new ResizeObserver(function () {
+          clampIndex();
+          update();
+        });
+        ro.observe(viewport);
+      }
+      window.addEventListener('resize', function () {
+        clampIndex();
+        update();
+      });
+
+      update();
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(update).catch(function () {});
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('site-search-toggle');
+      var panel = document.getElementById('site-search-drawer');
+      var input = document.getElementById('site-search-input');
+      var clearBtn = document.getElementById('site-search-clear');
+      var status = document.getElementById('site-search-status');
+      var grid = document.querySelector('#arrivals .grid');
+      if (!toggle || !panel || !input || !clearBtn || !status || !grid) return;
+
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+      var arrivals = document.getElementById('arrivals');
+      var didScrollToGrid = false;
+      var scrollTimer;
+
+      function tokens(q) {
+        return q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      }
+
+      function haystack(card) {
+        var bits = [card.innerText || ''];
+        var img = card.querySelector('img');
+        if (img && img.getAttribute('alt')) bits.push(img.getAttribute('alt'));
+        return bits.join(' ').replace(/\s+/g, ' ').trim().toLowerCase();
+      }
+
+      function filter() {
+        var qs = tokens(input.value);
+        var n = cards.length;
+        var shown = 0;
+        for (var i = 0; i < n; i++) {
+          var hay = haystack(cards[i]);
+          var match = qs.length === 0 || qs.every(function (t) {
+            return hay.indexOf(t) !== -1;
+          });
+          cards[i].hidden = !match;
+          if (match) shown++;
+        }
+
+        if (qs.length === 0) {
+          status.textContent = '';
+          didScrollToGrid = false;
+          clearTimeout(scrollTimer);
+        } else if (shown === 0) {
+          status.textContent = 'No finds match that search — try another word or browse the grid below.';
+        } else {
+          status.textContent = 'Showing ' + shown + ' of ' + n + ' finds (titles, blurbs, and photo descriptions on this page).';
+        }
+
+        clearTimeout(scrollTimer);
+        if (qs.length > 0 && arrivals && !didScrollToGrid) {
+          scrollTimer = setTimeout(function () {
+            didScrollToGrid = true;
+            arrivals.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 380);
+        }
+      }
+
+      function openPanel() {
+        panel.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        input.focus();
+      }
+
+      function closePanel() {
+        clearTimeout(scrollTimer);
+        panel.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+        input.value = '';
+        didScrollToGrid = false;
+        var i;
+        for (i = 0; i < cards.length; i++) {
+          cards[i].hidden = false;
+        }
+        status.textContent = '';
+      }
+
+      toggle.addEventListener('click', function () {
+        if (panel.hasAttribute('hidden')) {
+          openPanel();
+        } else {
+          closePanel();
+        }
+      });
+
+      clearBtn.addEventListener('click', function () {
+        input.value = '';
+        filter();
+        input.focus();
+      });
+
+      input.addEventListener('input', filter);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !panel.hasAttribute('hidden')) {
+          closePanel();
+          toggle.focus();
+        }
+        if (e.key === '/' && e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable)) {
+          return;
+        }
+        if (e.key === '/') {
+          e.preventDefault();
+          openPanel();
+        }
+      });
+    })();
+  </script>
 
   <!-- mount for tweaks -->
   <div id="tweaks-root"></div>
